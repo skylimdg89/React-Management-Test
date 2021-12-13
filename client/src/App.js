@@ -50,7 +50,27 @@ const customers = [
 ]
 
 class App extends Component {
+  // props 는 변경될수 없는 데이터를 명시할때 사용
+  // state는 Component 내에서 고객 정보처럼 변경될수 있는 변수를 처리할때 사용
+  state = {
+    customers: ""
+  }
+
+  // 일반적으로 api 서버에 접근해서 데이터를 받아오는 등의 작업은 ComponentDid mount 에서 해줄 수 있다
+  componentDidMount(){
+    this.callApi()
+      .then(res=> this.setState({customers: res}))
+      .catch(err => console.log(err))
+  }
+
+  callApi = async () =>{
+    const response = await fetch('/api/customers')
+    const body = await response.json()
+    return body
+  }
+
   render(){
+    
     const {classes}=this.props
     return (
       <Paper className={classes.root}>
@@ -66,7 +86,9 @@ class App extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-          {customers.map(c => {return (<Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job}/>)})}
+          {this.state.customers ? this.state.customers.map(c => {
+            return (<Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job}/>)}
+            ) : ""} 
           </TableBody>
         </Table>
       </Paper>
