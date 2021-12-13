@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import './App.css';
 import Customer from './components/Customer'
-import Paper from '@material-ui/core/Paper'
+import Paper from '@material-ui/core/Paper' // component 외부 감싸는 tag 중 하나 
 import Table from '@material-ui/core/Table'
 import TableHead from '@material-ui/core/TableHead'
 import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
-import { withStyles} from '@material-ui/core/styles'
+import { withStyles} from '@material-ui/core/styles' //css 사용하려면 withStyles import 해야한다
 
 // root 100% 그리고 위쪽으로 여백을 3의 가중치 만큼 가질수 있고, 전체 바깥쪽에 해당하는 X 쪽으로 overflow 발생할수 있도록 처리
 // 결과적으로 테이블은 1080 픽셀 이상 출력 될수 있도록 만든다
